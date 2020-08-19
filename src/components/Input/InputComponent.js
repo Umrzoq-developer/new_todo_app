@@ -3,12 +3,16 @@ import React from "react";
 //styling
 import {Input} from "./InputStyle";
 
-const CustomInput = (props) => {
+const CustomInput = ({value, handleChange}) => {
 
     return(
         <div>
-            Custom Input
-            <Input type='text'/>
+            <Input
+                placeholder="Enter Text"
+                type='text'
+                value={value}
+                onChange={handleChange}
+            />
         </div>
     )
 };
