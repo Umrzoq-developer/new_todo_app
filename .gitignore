@@ -6,7 +6,7 @@
 /.idea
 /idea
 /yarn.lock
-
+yarn.lock
 .pnp.js
 
 # testing
@@ -25,5 +25,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-yarn.lock
-yarn.lock*
+
