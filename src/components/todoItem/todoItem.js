@@ -2,7 +2,7 @@ import React from "react";
 //styling
 import {CheckBox, DeleteIcon, EditIcon, TodoItemDiv, TodoText} from "./todoItemStyle";
 
-const TodoItem = ({todo, checked, handleChecked, handleDelete}) => {
+const TodoItem = ({todo, checked, handleChecked, handleDelete, handleEdit}) => {
     return(
         <TodoItemDiv>
             <CheckBox
@@ -14,7 +14,7 @@ const TodoItem = ({todo, checked, handleChecked, handleDelete}) => {
             <TodoText>
                 {todo.title}
             </TodoText>
-            <EditIcon>
+            <EditIcon onClick={handleEdit}>
                 Edit &#9998;
             </EditIcon>
             <DeleteIcon onClick={handleDelete}>

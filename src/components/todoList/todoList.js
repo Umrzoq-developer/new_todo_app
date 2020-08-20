@@ -3,7 +3,7 @@ import React, {useContext} from "react";
 import TodoItem from "../todoItem/todoItem";
 //context
 import {todoContext} from "../../context/todoContext";
-import {CHECKED, DELETE_TODO} from "../../context/types";
+import {CHECKED, DELETE_TODO, EDIT_TODO} from "../../context/types";
 //styling
 import {TodoListDiv} from "./todoListStyle";
 
@@ -18,7 +18,6 @@ const TodoList = ({todos}) => {
             {
                 todos.length > 0 ?
                     todos.map(item => {
-                        console.log(item.checked);
                         return (
                             <TodoItem
                                 key={item.id}
@@ -28,8 +27,11 @@ const TodoList = ({todos}) => {
                                 handleDelete={() => {
                                     dispatch({type: DELETE_TODO, payload: item.id})
                                 }}
-                                handleChecked={({target: {checked}}) => {
-                                    dispatch({CHECKED, payload: checked})
+                                handleEdit={() => {
+                                    dispatch({type: EDIT_TODO, payload: item.id})
+                                }}
+                                handleChecked={(e) => {
+                                    dispatch({CHECKED, payload: e.target.checked})
                                 }}
                             />
                         )

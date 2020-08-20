@@ -6,16 +6,15 @@ import {todoContext} from "../../context/todoContext";
 //components
 import CustomInput from "../../components/Input/InputComponent";
 //types
-import {ADD_TODO} from "../../context/types";
+import {ADD_TODO, EDIT_TODO} from "../../context/types";
 import TodoList from "../../components/todoList/todoList";
 
 
 const Home = () => {
-    const [checked, setChecked] = useState(false);
     const [todo, setTodo] = useState({title: '', id: 0, checked: false});
     const {state, dispatch} = useContext(todoContext);
 
-    const {todos} = state;
+    const {todos, editTodo, edit} = state;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,14 +24,18 @@ const Home = () => {
         }
     };
 
-    const handleChecked = ({ target: { checked } }) => {
-        setChecked(checked);
+    const handleEdit = (e) => {
+        e.preventDefault();
+        if (editTodo.title.length>0){
+            dispatch({type: EDIT_TODO, payload: editTodo})
+        }
     };
+
 
 
     return (
         <HomeDiv>
-            <FormDiv onSubmit={handleSubmit}>
+            <FormDiv onSubmit={edit ? handleEdit : handleSubmit}>
                 <CustomInput
                     value={todo.title}
                     handleChange={e => {
@@ -40,15 +43,11 @@ const Home = () => {
                     }}
                 />
                 <FormButton type='submit'>
-                    Add
+                    {edit ? 'Edit' : 'Add'}
                 </FormButton>
             </FormDiv>
             {/*todo list*/}
-            <TodoList
-                todos={todos}
-                checked={checked}
-                handleChecked={handleChecked}
-            />
+            <TodoList todos={todos}/>
 
 
         </HomeDiv>
