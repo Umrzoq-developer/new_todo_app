@@ -8,10 +8,12 @@ import NotDone from "./pages/UnDone/NotDone";
 
 //context
 import TodoProvider from "./context/todoContext";
+import Side from "./components/Side/Side";
 
 const App = () => {
     return (
         <div className="App">
+            <Side/>
             <Switch>
                 <TodoProvider>
                     <Route exact path='/' component={Home}/>

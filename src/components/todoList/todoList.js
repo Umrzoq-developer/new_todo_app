@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 //components
 import TodoItem from "../todoItem/todoItem";
 //context
@@ -9,28 +9,27 @@ import {TodoListDiv} from "./todoListStyle";
 
 
 const TodoList = ({todos}) => {
-    const [doneTodos, setDoneTodos] = useState([]);
     const {state, dispatch} = useContext(todoContext);
-    const {checked} = state;
-    console.log(todos);
 
+    const {checked} = state;
     // console.log(todos);
     return (
         <TodoListDiv>
             {
                 todos.length > 0 ?
-                    todos.map((item, id) => {
+                    todos.map(item => {
+                        console.log(item.checked);
                         return (
                             <TodoItem
-                                key={id}
+                                key={item.id}
                                 todo={item}
+                                id={item.id}
                                 checked={checked}
                                 handleDelete={() => {
-                                    dispatch({type: DELETE_TODO, payload: id})
+                                    dispatch({type: DELETE_TODO, payload: item.id})
                                 }}
-                                handleChecked={() => {
-                                    dispatch({type: CHECKED, payload: id});
-                                    setDoneTodos([...doneTodos, todos[id]]);
+                                handleChecked={({target: {checked}}) => {
+                                    dispatch({CHECKED, payload: checked})
                                 }}
                             />
                         )

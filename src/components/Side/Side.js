@@ -1,22 +1,22 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+import {Header, LinkItem, List, ListItem, MainSide, Sider} from "./SideStyle";
 
 
 const Side = () => {
     return(
-        <div>
+        <MainSide>
             {/*header*/}
-            <div>
+            <Header>
                 <h2>My own Todo application</h2>
-            </div>
-            <div>
-                <ul>
-                    <li><Link to='/'>All</Link></li>
-                    <li><Link to='/done'>Done</Link></li>
-                    <li><Link to='/undone'>Undone</Link></li>
-                </ul>
-            </div>
-        </div>
+            </Header>
+            <Sider>
+                <List>
+                    <ListItem><LinkItem to='/'>All</LinkItem></ListItem>
+                    <ListItem><LinkItem to='/done'>Done</LinkItem></ListItem>
+                    <ListItem><LinkItem to='/undone'>Undone</LinkItem></ListItem>
+                </List>
+            </Sider>
+        </MainSide>
     )
 };
 

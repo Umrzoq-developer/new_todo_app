@@ -6,7 +6,6 @@ export const todoContext = createContext(null);
 
 const initialState = {
     todos: [],
-    doneTodos: [],
     checked: false
 };
 
@@ -20,7 +19,7 @@ const reducer = (state, action) => {
         case DELETE_TODO:
             return {
                 ...state,
-                todos: state.todos.filter(todo => todo[action.payload] !== action.payload)
+                todos: state.todos.filter(todo => todo.id !== action.payload)
             };
         case EDIT_TODO:
             return {
@@ -29,8 +28,7 @@ const reducer = (state, action) => {
         case CHECKED:
             return {
                 ...state,
-                checked: state.todos.find(todo => todo.id === action.payload && !state.checked),
-                // doneTodos: [...state.doneTodos]
+                checked: state.todos.find(todo => todo.id === action.payload && action.payload),
             };
         default:
             return state

@@ -7,16 +7,17 @@ const TodoItem = ({todo, checked, handleChecked, handleDelete}) => {
         <TodoItemDiv>
             <CheckBox
                 type="checkbox"
+                id={todo.id}
                 checked={checked}
                 onChange={handleChecked}
             />
             <TodoText>
-                {todo}
+                {todo.title}
             </TodoText>
-            <EditIcon type='button'>
+            <EditIcon>
                 Edit &#9998;
             </EditIcon>
-            <DeleteIcon type='button' onClick={handleDelete}>
+            <DeleteIcon onClick={handleDelete}>
                 Delete &#10006;
             </DeleteIcon>
         </TodoItemDiv>

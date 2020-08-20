@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 //styling
-import {HomeDiv} from "./HomeStyle";
+import {FormButton, FormDiv, HomeDiv} from "./HomeStyle";
 //context
 import {todoContext} from "../../context/todoContext";
 //components
@@ -11,34 +11,44 @@ import TodoList from "../../components/todoList/todoList";
 
 
 const Home = () => {
-    const [todo, setTodo] = useState('');
+    const [checked, setChecked] = useState(false);
+    const [todo, setTodo] = useState({title: '', id: 0, checked: false});
     const {state, dispatch} = useContext(todoContext);
 
     const {todos} = state;
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch({type: ADD_TODO, payload: todo});
-        setTodo('');
+        if (todo.title.length > 0) {
+            dispatch({type: ADD_TODO, payload: todo});
+            setTodo({...todo, title: '', id: todo.id + 1});
+        }
+    };
+
+    const handleChecked = ({ target: { checked } }) => {
+        setChecked(checked);
     };
 
 
     return (
         <HomeDiv>
-            <form onSubmit={handleSubmit}>
+            <FormDiv onSubmit={handleSubmit}>
                 <CustomInput
-                    value={todo}
-                    handleChange={e => setTodo(e.target.value)}
+                    value={todo.title}
+                    handleChange={e => {
+                        setTodo({...todo, title: e.target.value})
+                    }}
                 />
-                <button type='submit'>
+                <FormButton type='submit'>
                     Add
-                </button>
-
-                {/*todo list*/}
-                <div>
-                    <TodoList todos={todos}/>
-                </div>
-            </form>
+                </FormButton>
+            </FormDiv>
+            {/*todo list*/}
+            <TodoList
+                todos={todos}
+                checked={checked}
+                handleChecked={handleChecked}
+            />
 
 
         </HomeDiv>

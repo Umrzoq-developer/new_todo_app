@@ -6,9 +6,8 @@ export const TodoItemDiv = styled.div`
   border-radius: 5px;
   box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.4);
   padding: 10px;
-  line-height: 10px;
-  margin-top: 10px;
   text-align: center;
+  margin-top: 10px;
 `;
 
 export const CheckBox = styled.input`

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const TodoListDiv = styled.div`
-  width: 40%;
-  margin-top: 50px;
+  width: 60%;
   padding: 10px;
 `;
